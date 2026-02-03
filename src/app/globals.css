@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+
+:root {
+  --mint: #00ff88;
+  --cyan: #00d4ff;
+  --dark: #0a0a0a;
+  --dark-100: #1a1a1a;
+  --dark-200: #2a2a2a;
+  --dark-300: #3a3a3a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--dark);
+  color: #fff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 스크롤바 스타일 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dark-300);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mint);
+}
+
+/* 버튼 기본 스타일 */
+.btn-primary {
+  @apply bg-mint text-black font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-opacity-90 hover:shadow-lg hover:shadow-mint/20;
+}
+
+.btn-secondary {
+  @apply border border-mint text-mint font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-mint hover:text-black;
+}
+
+.btn-ghost {
+  @apply text-gray-400 hover:text-white transition-colors;
+}
+
+/* 카드 스타일 */
+.card {
+  @apply bg-dark-100 rounded-xl border border-dark-200 overflow-hidden transition-all duration-200 hover:border-mint/30;
+}
+
+/* 입력 필드 */
+.input {
+  @apply w-full bg-dark-200 border border-dark-300 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-mint focus:outline-none transition-colors;
+}
+
+.input-error {
+  @apply border-red-500 focus:border-red-500;
+}
+
+/* 배지 */
+.badge {
+  @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium;
+}
+
+.badge-mint {
+  @apply bg-mint/20 text-mint;
+}
+
+.badge-cyan {
+  @apply bg-cyan/20 text-cyan;
+}
+
+.badge-yellow {
+  @apply bg-yellow-500/20 text-yellow-400;
+}
+
+.badge-red {
+  @apply bg-red-500/20 text-red-400;
+}
+
+/* 그라데이션 텍스트 */
+.gradient-text {
+  @apply bg-gradient-to-r from-mint to-cyan bg-clip-text text-transparent;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-mint {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+.animate-pulse-mint {
+  animation: pulse-mint 2s infinite;
+}
+
+/* 토글 스위치 */
+.toggle {
+  @apply relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer;
+}
+
+.toggle-checked {
+  @apply bg-mint;
+}
+
+.toggle-unchecked {
+  @apply bg-dark-300;
+}
+
+.toggle-dot {
+  @apply inline-block h-4 w-4 transform rounded-full bg-white transition-transform;
+}
+
+/* 모바일 프레임 - 가운데 정렬 */
+.mobile-frame {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--dark);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
+}
+
+/* 데스크톱에서 모바일 프레임에 테두리 */
+@media (min-width: 431px) {
+  .mobile-frame {
+    border-left: 1px solid var(--dark-200);
+    border-right: 1px solid var(--dark-200);
+  }
+}
+
+/* 모바일에서는 전체 너비 */
+@media (max-width: 430px) {
+  .mobile-frame {
+    max-width: 100%;
+    box-shadow: none;
+  }
+}
+
+/* Header, Footer를 프레임 안에서 고정 */
+.mobile-frame header {
+  max-width: 430px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 모달/오버레이도 프레임 안에서 - fixed 포지셔닝 보존 */
+@media (min-width: 431px) {
+  .mobile-frame > .fixed,
+  .mobile-frame main .fixed {
+    max-width: 430px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+  }
+}
+
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+  .container {
+    @apply px-4;
+  }
+  
+  .card {
+    @apply rounded-lg;
+  }
+  
+  .btn-primary, .btn-secondary {
+    @apply px-4 py-2.5 text-sm;
+  }
+}
+
+/* Safe area for mobile */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
